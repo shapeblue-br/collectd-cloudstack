@@ -53,21 +53,30 @@ METRIC_TYPES = {
     'accountdisabled': ('g_accounts_total_disabled', 'current'),
     'zonecapamemorytotal': ('z_capacity_memory_total', 'current'),
     'zonecapamemoryused': ('z_capacity_memory_used', 'current'),
+    'zonecapamemoryfree': ('z_capacity_memory_free', 'current'),
     'zonecapamemorypercentused': ('z_capacity_memory_percent-used', 'current'),
     'zonecapacputotal': ('z_capacity_cpu_total', 'current'),
     'zonecapacpuused': ('z_capacity_cpu_used', 'current'),
+    'zonecapacpufree': ('z_capacity_cpu_free', 'current'),
     'zonecapacpupercentused': ('z_capacity_cpu_percent-used', 'current'),
     'zonecapadisktotal': ('z_capacity_disk_total', 'current'),
     'zonecapadiskused': ('z_capacity_disk_used', 'current'),
+    'zonecapadiskfree': ('z_capacity_disk_free', 'current'),
     'zonecapadiskpercentused': ('z_capacity_disk_percent-used', 'current'),
+    'zonecapapubliciptotal': ('z_capacity_public_ip_total', 'current'),
+    'zonecapapublicipused': ('z_capacity_public_ip_used', 'current'),
+    'zonecapapublicipfree': ('z_capacity_public_ip_free', 'current'),
+    'zonecapapublicippercentused': ('z_capacity_public_ip_percent-used', 'current'),
     'zonecapaprivateiptotal': ('z_capacity_privateip_total', 'current'),
     'zonecapaprivateipused': ('z_capacity_privateip_used', 'current'),
     'zonecapaprivateippercentused': ('z_capacity_privateip_percent-used', 'current'),
     'zonecapasstotal': ('z_capacity_SSdisk_total', 'current'),
     'zonecapassused': ('z_capacity_SSdisk_used', 'current'),
+    'zonecapassfree': ('z_capacity_SSdisk_free', 'current'),
     'zonecapasspercentused': ('z_capacity_SSdisk_percent-used', 'current'),
     'zonecapadiskalloctotal': ('z_capacity_allocated_disk_total', 'current'),
     'zonecapadiskallocused': ('z_capacity_allocated_disk_used', 'current'),
+    'zonecapadiskallocfree': ('z_capacity_allocated_disk_free', 'current'),
     'zonecapadiskallocpercentused': ('z_capacity_allocated_disk_percent-used', 'current'),
     'asyncjobscount': ('g_async_jobs_count', 'current')
 }
@@ -172,6 +181,12 @@ def get_stats():
         try:
             logger('verb', "Performing listVirtualMachines API call")
             virtualmachines = cs_list('listVirtualMachines', 'virtualmachine', details='all')
+            #projects = cs_list('listProjects', 'project', details='id')
+            #for project in projects:
+            #    vms_project = cs_list('listVirtualMachines', 'virtualmachine', details='all', projectid=project['id'])
+            #    for vm in vms_project:
+            #        virtualmachines += vm
+
             logger('verb', "Completed listVirtualMachines API call")
         except Exception:
             logger('warn', "status err Unable to connect to CloudStack URL at %s for ListVms" % API_MONITORS)
@@ -329,23 +344,38 @@ def get_stats():
             metricnameCapaZoneMemoryTotal = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapamemorytotal'])
             metricnameCapaZoneMemoryUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapamemoryused'])
             metricnameCapaZoneMemoryPercentUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapamemorypercentused'])
+            metricnameCapaZoneMemoryFree = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapamemoryfree'])
             stats[metricnameCapaZoneMemoryTotal] = c['capacitytotal']
             stats[metricnameCapaZoneMemoryUsed] = c['capacityused']
             stats[metricnameCapaZoneMemoryPercentUsed] = c['percentused']
+            stats[metricnameCapaZoneMemoryFree] = float(c['capacitytotal']) - float(c['capacityused'])
         elif c['type'] == 1:
             metricnameCapaZoneCpuTotal = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapacputotal'])
             metricnameCapaZoneCpuUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapacpuused'])
             metricnameCapaZoneCpuPercentUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapacpupercentused'])
+            metricnameCapaZoneCpuFree = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapacpufree'])
             stats[metricnameCapaZoneCpuTotal] = c['capacitytotal']
             stats[metricnameCapaZoneCpuUsed] = c['capacityused']
             stats[metricnameCapaZoneCpuPercentUsed] = c['percentused']
+            stats[metricnameCapaZoneCpuFree] = float(c['capacitytotal']) - float(c['capacityused'])
         elif c['type'] == 2:
             metricnameCapaZoneDiskTotal = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapadisktotal'])
             metricnameCapaZoneDiskUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapadiskused'])
             metricnameCapaZoneDiskPercentUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapadiskpercentused'])
+            metricnameCapaZoneDiskFree = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapadiskfree'])
             stats[metricnameCapaZoneDiskTotal] = c['capacitytotal']
             stats[metricnameCapaZoneDiskUsed] = c['capacityused']
             stats[metricnameCapaZoneDiskPercentUsed] = c['percentused']
+            stats[metricnameCapaZoneDiskFree] = float(c['capacitytotal']) - float(c['capacityused'])
+        elif c['type'] == 4:
+            metricnameCapaZonePublicIPTotal = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapapubliciptotal'])
+            metricnameCapaZonePublicIPUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapapublicipused'])
+            metricnameCapaZonePublicIPPercentUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapapublicippercentused'])
+            metricnameCapaZonePublicIPFree = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapapublicipfree'])
+            stats[metricnameCapaZonePublicIPTotal] = c['capacitytotal']
+            stats[metricnameCapaZonePublicIPUsed] = c['capacityused']
+            stats[metricnameCapaZonePublicIPPercentUsed] = c['percentused']
+            stats[metricnameCapaZonePublicIPFree] = float(c['capacitytotal']) - float(c['capacityused'])
         elif c['type'] == 5:
             metricnameCapaZonePrivateipTotal = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapaprivateiptotal'])
             metricnameCapaZonePrivateipUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapaprivateipused'])
@@ -357,16 +387,20 @@ def get_stats():
             metricnameCapaZoneSSTotal = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapasstotal'])
             metricnameCapaZoneSSUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapassused'])
             metricnameCapaZoneSSPercentUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapasspercentused'])
+            metricnameCapaZoneSSFree = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapassfree'])
             stats[metricnameCapaZoneSSTotal] = c['capacitytotal']
             stats[metricnameCapaZoneSSUsed] = c['capacityused']
             stats[metricnameCapaZoneSSPercentUsed] = c['percentused']
+            stats[metricnameCapaZoneSSFree] = float(c['capacitytotal']) - float(c['capacityused'])
         elif c['type'] == 9:
             metricnameCapaZoneDiskAllocTotal = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapadiskalloctotal'])
             metricnameCapaZoneDiskAllocUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapadiskallocused'])
             metricnameCapaZoneDiskAllocPercentUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapadiskallocpercentused'])
+            metricnameCapaZoneDiskAllocFree = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapadiskallocfree'])
             stats[metricnameCapaZoneDiskAllocTotal] = c['capacitytotal']
             stats[metricnameCapaZoneDiskAllocUsed] = c['capacityused']
             stats[metricnameCapaZoneDiskAllocPercentUsed] = c['percentused']
+            stats[metricnameCapaZoneDiskAllocFree] = float(c['capacitytotal']) - float(c['capacityused'])
 
     return stats
 
