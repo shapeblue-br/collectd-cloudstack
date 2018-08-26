@@ -39,6 +39,7 @@ METRIC_TYPES = {
     'zonepublicipallocated': ('z_public_ip_allocated', 'current'),
     'zonepubliciptotal': ('z_public_ip_total', 'current'),
     'zonepublicippercent': ('z_public_ip_percent', 'percent'),
+    'zonenetworkstotal': ('z_network_total', 'current'),
     'zonevmtotal': ('z_vm_total', 'current'),
     'zonerootdiskavgsize': ('z_disksize_avg', 'current'),
     'zonevmramavgsize': ('z_vm_ram_avg', 'current'),
@@ -67,6 +68,10 @@ METRIC_TYPES = {
     'zonecapapublicipused': ('z_capacity_public_ip_used', 'current'),
     'zonecapapublicipfree': ('z_capacity_public_ip_free', 'current'),
     'zonecapapublicippercentused': ('z_capacity_public_ip_percent-used', 'current'),
+    'zonecapavlantotal': ('z_capacity_vlan_total', 'current'),
+    'zonecapavlanused': ('z_capacity_vlan_used', 'current'),
+    'zonecapavlanfree': ('z_capacity_vlan_free', 'current'),
+    'zonecapavlanpercentused': ('z_capacity_vlan_percent-used', 'current'),
     'zonecapaprivateiptotal': ('z_capacity_privateip_total', 'current'),
     'zonecapaprivateipused': ('z_capacity_privateip_used', 'current'),
     'zonecapaprivateippercentused': ('z_capacity_privateip_percent-used', 'current'),
@@ -167,6 +172,9 @@ def get_stats():
         metricnameIpAllocated = METRIC_DELIM.join(['zonepublicipallocated', zone['name'].lower(),  'zonepublicipallocated'])
         metricnameIpTotal = METRIC_DELIM.join(['zonepubliciptotal', zone['name'].lower(),  'zonepubliciptotal'])
         metricnameIpAllocatedPercent = METRIC_DELIM.join(['zonepublicippercent', zone['name'].lower(),  'zonepublicippercent'])
+        metricnameVlanAllocated = METRIC_DELIM.join(['zonevlanallocated', zone['name'].lower(),  'zonevlanallocated'])
+        metricnameVlanTotal = METRIC_DELIM.join(['zonevlantotal', zone['name'].lower(),  'zonevlantotal'])
+        metricnameVlanAllocatedPercent = METRIC_DELIM.join(['zonevlanpercent', zone['name'].lower(),  'zonevlanpercent'])     
         metricnameVmZoneTotalRunning = METRIC_DELIM.join(['zonevmtotalrunning', zone['name'].lower(),  'zonevmtotalrunning'])
         metricnameVmZoneTotalStopped = METRIC_DELIM.join(['zonevmtotalstopped', zone['name'].lower(),  'zonevmtotalstopped'])
         metricnameVmZoneTotalStopping = METRIC_DELIM.join(['zonevmtotalstopping', zone['name'].lower(),  'zonevmtotalstopping'])
@@ -181,11 +189,14 @@ def get_stats():
         try:
             logger('verb', "Performing listVirtualMachines API call")
             virtualmachines = cs_list('listVirtualMachines', 'virtualmachine', details='all')
-            #projects = cs_list('listProjects', 'project', details='id')
-            #for project in projects:
-            #    vms_project = cs_list('listVirtualMachines', 'virtualmachine', details='all', projectid=project['id'])
-            #    for vm in vms_project:
-            #        virtualmachines += vm
+            projects = cs_list('listProjects', 'project', details='id')
+            for project in projects:
+                vms_project = cs_list('listVirtualMachines', 'virtualmachine', details='all', projectid=project['id'])
+                for vm in vms_project:
+                    virtualmachines.append(vm)
+            total_vm = 0
+            for vm in virtualmachines:
+                total_vm = total_vm + 1
 
             logger('verb', "Completed listVirtualMachines API call")
         except Exception:
@@ -392,6 +403,15 @@ def get_stats():
             stats[metricnameCapaZoneSSUsed] = c['capacityused']
             stats[metricnameCapaZoneSSPercentUsed] = c['percentused']
             stats[metricnameCapaZoneSSFree] = float(c['capacitytotal']) - float(c['capacityused'])
+        elif c['type'] == 7:
+            metricnameCapaZoneVlanTotal = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapavlantotal'])
+            metricnameCapaZoneVlanUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapavlanpused'])
+            metricnameCapaZoneVlanPercentUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapavlanpercentused'])
+            metricnameCapaZoneVlanFree = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapavlanfree'])
+            stats[metricnameCapaZoneVlanTotal] = c['capacitytotal']
+            stats[metricnameCapaZoneVlanUsed] = c['capacityused']
+            stats[metricnameCapaZoneVlanPercentUsed] = c['percentused']
+            stats[metricnameCapaZoneVlanFree] = float(c['capacitytotal']) - float(c['capacityused'])
         elif c['type'] == 9:
             metricnameCapaZoneDiskAllocTotal = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapadiskalloctotal'])
             metricnameCapaZoneDiskAllocUsed = METRIC_DELIM.join(['zonecapacity', c['zonename'].lower(),  'zonecapadiskallocused'])
