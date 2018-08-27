@@ -174,6 +174,7 @@ def get_stats():
         metricnameIpAllocatedPercent = METRIC_DELIM.join(['zonepublicippercent', zone['name'].lower(),  'zonepublicippercent'])
         metricnameVlanAllocated = METRIC_DELIM.join(['zonevlanallocated', zone['name'].lower(),  'zonevlanallocated'])
         metricnameVlanTotal = METRIC_DELIM.join(['zonevlantotal', zone['name'].lower(),  'zonevlantotal'])
+        metricnameVlanUsed = METRIC_DELIM.join(['zonevlanused', zone['name'].lower(),  'zonevlanused'])
         metricnameVlanAllocatedPercent = METRIC_DELIM.join(['zonevlanpercent', zone['name'].lower(),  'zonevlanpercent'])     
         metricnameVmZoneTotalRunning = METRIC_DELIM.join(['zonevmtotalrunning', zone['name'].lower(),  'zonevmtotalrunning'])
         metricnameVmZoneTotalStopped = METRIC_DELIM.join(['zonevmtotalstopped', zone['name'].lower(),  'zonevmtotalstopped'])

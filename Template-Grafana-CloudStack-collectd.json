@@ -60,14 +60,14 @@
   "gnetId": 24,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1535252522077,
+  "iteration": 1535310141042,
   "links": [],
   "panels": [
     {
       "aliasColors": {
         "CPU Free": "#0a437c",
         "CPU Used": "#5195ce",
-        "Free": "#1f78c1",
+        "Free": "#c15c17",
         "Total": "#052b51",
         "Used": "#bf1b00"
       },
@@ -115,7 +115,7 @@
           "textEditor": true
         }
       ],
-      "title": "Allocalted CPU",
+      "title": "Allocated CPU",
       "transparent": true,
       "type": "grafana-piechart-panel",
       "valueName": "current"
@@ -123,7 +123,7 @@
     {
       "aliasColors": {
         " Used": "#bf1b00",
-        "Free": "#1f78c1",
+        "Free": "#e0752d",
         "Total": "#0a437c"
       },
       "breakPoint": "50%",
@@ -137,7 +137,7 @@
       "format": "decbytes",
       "gridPos": {
         "h": 6,
-        "w": 5,
+        "w": 4,
         "x": 4,
         "y": 0
       },
@@ -171,14 +171,14 @@
           "target": ""
         }
       ],
-      "title": "Allocalted Memory",
+      "title": "Allocated Memory",
       "transparent": true,
       "type": "grafana-piechart-panel",
       "valueName": "current"
     },
     {
       "aliasColors": {
-        "Free ": "#1f78c1",
+        "Free ": "#e0752d",
         "Total ": "#0a437c",
         "Used ": "#bf1b00"
       },
@@ -194,8 +194,8 @@
       "format": "decbytes",
       "gridPos": {
         "h": 6,
-        "w": 5,
-        "x": 9,
+        "w": 4,
+        "x": 8,
         "y": 0
       },
       "id": 24,
@@ -229,7 +229,7 @@
     },
     {
       "aliasColors": {
-        "Free ": "#1f78c1",
+        "Free ": "#e0752d",
         "Total ": "#0a437c",
         "Used ": "#bf1b00"
       },
@@ -244,8 +244,8 @@
       "format": "decbytes",
       "gridPos": {
         "h": 6,
-        "w": 5,
-        "x": 14,
+        "w": 4,
+        "x": 12,
         "y": 0
       },
       "id": 23,
@@ -272,14 +272,14 @@
           "target": "alias(collectdgrafana-vm-01collectd.cloudstack.current-zonecapacity_mg-lgp-01_z_capacity_SSdisk_used, 'Used ')"
         }
       ],
-      "title": "Allocalted Secondary Storage",
+      "title": "Allocated Sec Storage",
       "transparent": true,
       "type": "grafana-piechart-panel",
       "valueName": "current"
     },
     {
       "aliasColors": {
-        "Free ": "#1f78c1",
+        "Free ": "#f9934e",
         "Total ": "#0a437c",
         "Used ": "#bf1b00"
       },
@@ -294,8 +294,8 @@
       "format": "short",
       "gridPos": {
         "h": 6,
-        "w": 5,
-        "x": 19,
+        "w": 4,
+        "x": 16,
         "y": 0
       },
       "id": 28,
@@ -322,7 +322,60 @@
           "target": "alias(collectdgrafana-vm-01collectd.cloudstack.current-zonecapacity_mg-lgp-01_z_capacity_public_ip_used, 'Used ')"
         }
       ],
-      "title": "Allocalted IP Address",
+      "title": "Allocated IP Address",
+      "transparent": true,
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "Free ": "#e0752d",
+        "Total ": "#0a437c",
+        "Used": "#bf1b00",
+        "Used ": "#bf1b00"
+      },
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
+      "fontSize": "80%",
+      "format": "short",
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 20,
+        "y": 0
+      },
+      "id": 47,
+      "interval": null,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Under graph",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "pieType": "donut",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(collectdgrafana-vm-01collectd.cloudstack.current-zonecapacity_mg-lgp-01_z_capacity_vlan_free, 'Free ')",
+          "textEditor": true
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(diffSeries(collectdgrafana-vm-01collectd.cloudstack.current-zonecapacity_mg-lgp-01_z_capacity_vlan_total, collectdgrafana-vm-01collectd.cloudstack.current-zonecapacity_mg-lgp-01_z_capacity_vlan_free), 'Used')",
+          "textEditor": true
+        }
+      ],
+      "title": "Allocated VLAN",
       "transparent": true,
       "type": "grafana-piechart-panel",
       "valueName": "current"
@@ -347,7 +400,7 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
+        "h": 2,
         "w": 4,
         "x": 0,
         "y": 6
@@ -428,8 +481,8 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 5,
+        "h": 2,
+        "w": 4,
         "x": 4,
         "y": 6
       },
@@ -508,9 +561,9 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 9,
+        "h": 2,
+        "w": 4,
+        "x": 8,
         "y": 6
       },
       "id": 38,
@@ -588,9 +641,9 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 14,
+        "h": 2,
+        "w": 4,
+        "x": 12,
         "y": 6
       },
       "id": 37,
@@ -669,9 +722,9 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 19,
+        "h": 2,
+        "w": 4,
+        "x": 16,
         "y": 6
       },
       "id": 39,
@@ -732,10 +785,91 @@
     {
       "cacheTimeout": null,
       "colorBackground": false,
-      "colorValue": false,
+      "colorValue": true,
       "colors": [
         "#299c46",
         "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
+      "decimals": 2,
+      "format": "percent",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 20,
+        "y": 6
+      },
+      "id": 45,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "collectdgrafana-vm-01collectd.cloudstack.current-zonecapacity_mg-lgp-01_z_capacity_vlan_percent-used",
+          "textEditor": false
+        }
+      ],
+      "thresholds": "",
+      "title": "Used VLANs",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "#bf1b00",
         "#d44a3a"
       ],
       "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
@@ -749,10 +883,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
+        "h": 2,
         "w": 4,
         "x": 0,
-        "y": 9
+        "y": 8
       },
       "id": 31,
       "interval": null,
@@ -797,7 +931,7 @@
         }
       ],
       "thresholds": "",
-      "title": "CPU Total",
+      "title": "Total CPU",
       "transparent": true,
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -813,10 +947,10 @@
     {
       "cacheTimeout": null,
       "colorBackground": false,
-      "colorValue": false,
+      "colorValue": true,
       "colors": [
         "#299c46",
-        "rgba(237, 129, 40, 0.89)",
+        "#bf1b00",
         "#d44a3a"
       ],
       "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
@@ -829,10 +963,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 5,
+        "h": 2,
+        "w": 4,
         "x": 4,
-        "y": 9
+        "y": 8
       },
       "id": 32,
       "interval": null,
@@ -876,7 +1010,7 @@
         }
       ],
       "thresholds": "",
-      "title": "Memory Total",
+      "title": "Total Memory",
       "transparent": true,
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -892,10 +1026,10 @@
     {
       "cacheTimeout": null,
       "colorBackground": false,
-      "colorValue": false,
+      "colorValue": true,
       "colors": [
         "#299c46",
-        "rgba(237, 129, 40, 0.89)",
+        "#bf1b00",
         "#d44a3a"
       ],
       "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
@@ -909,10 +1043,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 9,
-        "y": 9
+        "h": 2,
+        "w": 4,
+        "x": 8,
+        "y": 8
       },
       "id": 40,
       "interval": null,
@@ -956,7 +1090,7 @@
         }
       ],
       "thresholds": "",
-      "title": "Disk Total",
+      "title": "Total Disk",
       "transparent": true,
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -972,10 +1106,10 @@
     {
       "cacheTimeout": null,
       "colorBackground": false,
-      "colorValue": false,
+      "colorValue": true,
       "colors": [
         "#299c46",
-        "rgba(237, 129, 40, 0.89)",
+        "#bf1b00",
         "#d44a3a"
       ],
       "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
@@ -988,10 +1122,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 14,
-        "y": 9
+        "h": 2,
+        "w": 4,
+        "x": 12,
+        "y": 8
       },
       "id": 35,
       "interval": null,
@@ -1035,7 +1169,7 @@
         }
       ],
       "thresholds": "",
-      "title": "Secondary Storage Total",
+      "title": "Total Sec Storage",
       "transparent": true,
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -1051,7 +1185,245 @@
     {
       "cacheTimeout": null,
       "colorBackground": false,
-      "colorValue": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "#bf1b00",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
+      "format": "short",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 16,
+        "y": 8
+      },
+      "id": 48,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias(collectdgrafana-vm-01collectd.cloudstack.current-zonecapacity_mg-lgp-01_z_capacity_public_ip_total, 'Accounts')"
+        }
+      ],
+      "thresholds": "",
+      "title": "Total IP Address",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "#bf1b00",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 20,
+        "y": 8
+      },
+      "id": 44,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "collectdgrafana-vm-01collectd.cloudstack.current-zonecapacity_mg-lgp-01_z_capacity_vlan_total"
+        }
+      ],
+      "thresholds": "",
+      "title": "Total VLANs",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
+      "format": "hertz",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 0,
+        "y": 10
+      },
+      "id": 41,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "scale(collectdgrafana-vm-01collectd.cloudstack.current-zonecapacity_mg-lgp-01_z_capacity_cpu_free,1000000)",
+          "textEditor": true
+        }
+      ],
+      "thresholds": "",
+      "title": "Free CPU",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
       "colors": [
         "#299c46",
         "rgba(237, 129, 40, 0.89)",
@@ -1067,10 +1439,169 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 20,
-        "y": 9
+        "h": 2,
+        "w": 4,
+        "x": 4,
+        "y": 10
+      },
+      "id": 50,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "collectdgrafana-vm-01collectd.cloudstack.current-zonevmtotal_mg-lgp-01_z_vm_total"
+        }
+      ],
+      "thresholds": "",
+      "title": "Total VMs",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 8,
+        "y": 10
+      },
+      "id": 51,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "collectdgrafana-vm-01collectd.cloudstack.current-zonevmtotal_mg-lgp-01_z_vm_total"
+        }
+      ],
+      "thresholds": "",
+      "title": "Total VMs",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
+      "decimals": 2,
+      "format": "decbytes",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 12,
+        "y": 10
       },
       "id": 34,
       "interval": null,
@@ -1110,11 +1641,407 @@
       "targets": [
         {
           "refId": "A",
-          "target": "collectdgrafana-vm-01collectd.cloudstack.current-zonecapacity_mg-lgp-01_z_capacity_public_ip_total"
+          "target": "collectdgrafana-vm-01collectd.cloudstack.current-zonecapacity_mg-lgp-01_z_capacity_SSdisk_free"
         }
       ],
       "thresholds": "",
-      "title": "Public IP Total",
+      "title": "Free Sec Storage",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
+      "decimals": null,
+      "format": "short",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 16,
+        "y": 10
+      },
+      "id": 52,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "collectdgrafana-vm-01collectd.cloudstack.current-zonecapacity_mg-lgp-01_z_capacity_public_ip_free"
+        }
+      ],
+      "thresholds": "",
+      "title": "Free IP Address",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 20,
+        "y": 10
+      },
+      "id": 46,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "collectdgrafana-vm-01collectd.cloudstack.current-zonecapacity_mg-lgp-01_z_capacity_vlan_free"
+        }
+      ],
+      "thresholds": "",
+      "title": "Free VLANs",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "#0a437c",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 0,
+        "y": 12
+      },
+      "id": 49,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "collectdgrafana-vm-01collectd.cloudstack.current-zonevmtotal_mg-lgp-01_z_vm_total"
+        }
+      ],
+      "thresholds": "",
+      "title": "Total VMs",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "#0a437c",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 4,
+        "y": 12
+      },
+      "id": 42,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "collectdgrafana-vm-01collectd.cloudstack.current-zonevmtotalrunning_mg-lgp-01_z_vm_total_running"
+        }
+      ],
+      "thresholds": "",
+      "title": "Running VMs",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "#0a437c",
+        "#d44a3a"
+      ],
+      "datasource": "${DS_CLOUDSTACK_METRICS DATA SOURCE}",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 8,
+        "y": 12
+      },
+      "id": 43,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "collectdgrafana-vm-01collectd.cloudstack.current-zonevmtotalstopped_mg-lgp-01_z_vm_total_stopped"
+        }
+      ],
+      "thresholds": "",
+      "title": "Stopped VMs",
       "transparent": true,
       "type": "singlestat",
       "valueFontSize": "80%",
@@ -1218,5 +2145,5 @@
   "timezone": "browser",
   "title": "CloudStack Metrics",
   "uid": "JXBsjypik",
-  "version": 12
+  "version": 17
 }
